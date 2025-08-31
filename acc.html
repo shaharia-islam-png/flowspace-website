@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create Account</title>
+  <style>
+    body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(135deg, #fb1a65d4, #e6293f);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  height: 100vh;
+}
+.hello-title {
+  color: white;
+  font-size: 32px;
+  margin-top: 40px;
+  margin-bottom: 20px;
+  font-weight: bold;
+  text-transform: uppercase;
+  white-space: nowrap;
+  overflow: hidden;
+  border-right: 3px solid white;
+  width: 0;
+  animation: typing 3s steps(12) forwards, blink 0.7s infinite;
+}
+
+@keyframes typing {
+  to { width: 28ch; }
+}
+@keyframes blink {
+  50% { border-color: transparent; }
+}
+
+.account-container {
+  background: rgba(255, 255, 255, 0.12);
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+  width: 350px;
+  text-align: center;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255,255,255,0.3);
+  color: white;
+  opacity: 0;
+  transform: translateY(50px);
+  animation: slideUp 1s forwards
+}
+@keyframes slideUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+  
+
+.account-container h2, 
+.account-container h3 {
+  margin: 10px 0;
+  color: white;
+  padding: 5px;
+}
+
+.account-container input {
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0;
+  border: none;
+  border-radius: 8px;
+  outline: none;
+}
+
+.account-container input::placeholder {
+  color: #ddd;
+}
+
+.account-container button {
+  width: 100%;
+  padding: 12px;
+  background: #6a11cb;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.account-container button:hover {
+  background: #2575fc;
+   transform: scale(1.05);
+}
+
+.account-container p {
+  margin-top: 15px;
+  font-size: 14px;
+  color: #eee;
+}
+.account-container p a { 
+  color: #1e1148;
+  font-weight: bold;
+  text-decoration: underline;
+}
+.account-container p a:hover{
+  color: #ff0749;
+}
+@keyframes slideUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+ 
+}
+
+  </style>>
+</head>
+<body>
+  
+  <h1 class="hello-title">Create Your own Account</h1>
+
+  <div class="account-container">
+    <h2>Welcome to Flowspace</h2>
+    <h3>📝 Create Account</h3>
+    <form action="login.html">
+      <div class="input item">
+      <input type="text" placeholder="Full Name" required>
+      <input type="email" placeholder="Email" required>
+      <input type="password" placeholder="Password" required>
+      <input type="password" placeholder="Confirm Password" required>
+      <button type="submit">Create Account</button>
+      </div>
+    </form>
+
+    <p>Already have an account? <a href="login.html">Login here</a></p>
+  </div>
+</body>
+</html>

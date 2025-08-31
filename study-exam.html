@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Exam — Flowspace</title>
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0;}
+    body{
+      font-family:'Poppins',Arial,sans-serif;
+      background:linear-gradient(135deg,#f9f9ff,#e0f7fa);
+      min-height:100vh;
+      animation:fadeIn 0.8s ease;
+    }
+    @keyframes fadeIn{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:translateY(0);}}
+
+    /* Navbar */
+    nav{
+      background:linear-gradient(45deg,#ff512f,#dd2476);
+      color:white;
+      display:flex;justify-content:space-between;align-items:center;
+      padding:20px 40px;
+      box-shadow:0 6px 18px rgba(0,0,0,0.08);
+      position:sticky;top:0;z-index:120;
+    }
+    nav .logo{font-size:20px;font-weight:700;}
+    nav ul{list-style:none;display:flex;gap:12px;}
+    nav ul li a{
+      text-decoration:none;color:white;font-size:15px;
+      padding:8px 12px;border-radius:8px;transition:background .25s;
+    }
+    nav ul li a:hover,nav ul li a.active{background:rgba(255,255,255,0.12);}
+
+    /* Sidebar */
+    .sidebar{
+      width:230px;position:fixed;top:72px;left:24px;
+      height:calc(100vh - 96px);
+      padding:20px;border-radius:14px;
+      background:linear-gradient(180deg,#ff512f,#dd2476);
+      color:#fff;
+      box-shadow:0 12px 30px rgba(0,0,0,0.25);
+      display:flex;flex-direction:column;gap:18px;
+      animation:sidebarIn 0.55s ease forwards;
+    }
+    @keyframes sidebarIn{from{transform:translateX(-30px);opacity:0;}to{transform:translateX(0);opacity:1;}}
+    .sidebar .brand{display:flex;align-items:center;gap:10px;}
+    .sidebar .logo-sq{
+      width:36px;height:36px;border-radius:10px;
+      background:rgba(255,255,255,0.12);
+      display:flex;align-items:center;justify-content:center;
+      font-weight:700;font-size:16px;
+    }
+    .sidebar h3{font-size:13px;text-transform:uppercase;color:rgba(255,255,255,0.9);}
+    .sidebar ul{list-style:none;display:flex;flex-direction:column;gap:8px;margin-top:8px;}
+    .sidebar ul li a{
+      display:flex;align-items:center;gap:10px;
+      padding:8px 10px;border-radius:10px;
+      color:rgba(255,255,255,0.95);text-decoration:none;font-size:14px;
+      transition:all .25s;
+    }
+    .sidebar ul li a:hover{transform:translateX(6px);background:rgba(255,255,255,0.1);}
+    .sidebar ul li a.active{
+      background:#fff;color:#000;font-weight:600;
+      box-shadow:0 6px 18px rgba(102,32,46,0.539);
+    }
+
+    /* Content */
+    .content-wrap{margin-left:290px;padding:28px 36px;}
+    .exam h1{
+      text-align:center;font-size:32px;font-weight:700;color:#ff512f;margin-bottom:10px;
+    }
+    .exam p{text-align:center;color:#333;margin-bottom:28px;}
+
+    .exam-box{
+      max-width:800px;margin:0 auto;
+      background:#fff;padding:28px;border-radius:14px;
+      box-shadow:0 6px 20px rgba(0,0,0,0.1);
+      animation:fadeUp 0.6s ease;
+    }
+    @keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+
+    .exam-box h2{
+      color:#dd2476;font-size:20px;margin-bottom:16px;
+      border-bottom:2px solid #ff512f;padding-bottom:6px;
+    }
+    .exam-list{list-style:none;display:flex;flex-direction:column;gap:14px;}
+    .exam-list li{
+      background:#f9f9ff;padding:14px;border-radius:10px;
+      display:flex;justify-content:space-between;align-items:center;
+      transition:0.3s;
+    }
+    .exam-list li:hover{transform:translateY(-4px);box-shadow:0 6px 14px rgba(0,0,0,0.1);}
+    .exam-list span{font-weight:600;color:#333;}
+    .exam-list button{
+      padding:6px 14px;border:none;border-radius:8px;
+      background:linear-gradient(45deg,#ff512f,#dd2476);
+      color:white;font-size:14px;font-weight:600;
+      cursor:pointer;transition:0.3s;
+    }
+    .exam-list button:hover{transform:translateY(-2px);box-shadow:0 6px 12px rgba(0,0,0,0.2);}
+
+    /* Responsive */
+    @media(max-width:1000px){
+      .sidebar{position:static;width:100%;height:auto;margin:12px;}
+      .content-wrap{margin-left:0;padding:18px;}
+      nav{padding:12px 16px;}
+    }
+    @media(max-width:560px){
+      nav ul{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-top:10px;width:100%;}
+      .exam h1{font-size:26px;}
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav>
+    <div class="logo">Flowspace</div>
+    <ul>
+      <li><a href="dashboard.html">Dashboard</a></li>
+      <li><a href="study.html" class="active">Study</a></li>
+      <li><a href="skills.html">Skills</a></li>
+      <li><a href="marathon.html">Marathon</a></li>
+      <li><a href="fitness.html">Fitness</a></li>
+      <li><a href="job.html">Job</a></li>
+      <li><a href="outfit.html">Outfit</a></li>
+      <li><a href="movie.html">Movies</a></li>
+      <li><a href="login.html">Logout</a></li>
+    </ul>
+  </nav>
+
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="brand">
+      <div class="logo-sq">📝</div>
+      <div>
+        <div style="font-weight:700;">Exam</div>
+        <div style="font-size:12px;opacity:.85;">Overview</div>
+      </div>
+    </div>
+    <h3>Overview</h3>
+    <ul>
+      <li><a href="study.html">📊 Dashboard</a></li>
+      <li><a href="study-syllabus.html">📚 Syllabus</a></li>
+      <li><a href="syllabus-upload.html">⬆️ Syllabus upload</a></li>
+      <li><a href="study-exam.html" class="active">📝 Exam</a></li>
+      <li><a href="study-routine.html">🗓️ Routine</a></li>
+      <li><a href="study-group.html">👥 Group</a></li>
+      <li><a href="study-flashcard.html">💡 Flash Card</a></li>
+      <li><a href="study-result.html">🏆 Result</a></li>
+      <li><a href="#">📇 Theme</a></li>
+    </ul>
+  </aside>
+
+  <!-- Main -->
+  <main class="content-wrap">
+    <section class="exam">
+      <h1>📝 Online Exams</h1>
+      <p>Take practice tests and evaluate your preparation.</p>
+
+      <div class="exam-box">
+        <h2>Available Exams</h2>
+        <ul class="exam-list">
+          <li>
+            <span>Mathematics — Chapter 1</span>
+            <button>Start</button>
+          </li>
+          <li>
+            <span>Science — Physics Basics</span>
+            <button>Start</button>
+          </li>
+          <li>
+            <span>English Grammar Test</span>
+            <button>Start</button>
+          </li>
+          <li>
+            <span>Programming Fundamentals</span>
+            <button>Start</button>
+          </li>
+        </ul>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

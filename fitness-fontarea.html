@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Font Area - Fitness</title>
+  <style>
+    body { margin: 0; font-family: Arial, sans-serif; background: #f0fff5; }
+
+    /* Navbar */
+    nav {
+      background: linear-gradient(45deg, #27ae60, #0bca3ebd);
+      color: white;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 12px 40px;
+    }
+    nav .logo { font-size: 22px; font-weight: bold; }
+    nav ul { list-style: none; display: flex; }
+    nav ul li { margin-left: 20px; }
+    nav ul li a {
+      text-decoration: none; color: white; font-size: 15px;
+      padding: 8px 12px; border-radius: 6px; transition: 0.3s;
+    }
+    nav ul li a:hover, nav ul li a.active { background: #1e8449; }
+
+    /* Sidebar */
+    .sidebar {
+      width: 230px;
+      position: fixed;
+      top: 72px;
+      left: 24px;
+      height: calc(80vh - 96px);
+      padding: 20px;
+      border-radius: 14px;
+      background: linear-gradient(180deg,#27ae60, #0bca3e7c);
+      color: #fff;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.25);
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      animation: sidebarIn 0.55s ease forwards;
+    }
+    @keyframes sidebarIn {
+      from { transform: translateX(-30px); opacity:0; }
+      to { transform: translateX(0); opacity:1; }
+    }
+    .sidebar .brand {
+      display:flex; align-items:center; gap:10px;
+    }
+    .sidebar .logo-sq {
+      width:36px; height:36px; border-radius:10px;
+      background: rgba(255,255,255,0.12);
+      display:flex; align-items:center; justify-content:center;
+      font-weight:700; font-size:16px;
+    }
+    .sidebar h3 {
+      font-size:13px; margin:0; text-transform:uppercase; color: rgba(255,255,255,0.9);
+    }
+    .sidebar ul { list-style: none; display:flex; flex-direction:column; gap:8px; margin-top:8px; }
+    .sidebar ul li a {
+      display:flex; align-items:center; gap:10px;
+      padding:8px 10px; border-radius:10px;
+      color: rgba(255,255,255,0.95); text-decoration:none; font-size:14px;
+      transition: all .25s;
+    }
+    .sidebar ul li a:hover { transform: translateX(6px); background: rgba(255,255,255,0.1); }
+    .sidebar ul li a.active {
+      background: #fff;
+      color: #000000;
+      font-weight:600;
+      box-shadow: 0 6px 18px rgba(102, 32, 46, 0.539);
+    }
+
+    .content-wrap {
+      margin-left: 290px;
+      padding: 28px 36px;
+    }
+
+    /* Page Content */
+    .page-section { 
+      padding: 40px; 
+      text-align: center; 
+    }
+    .page-section h1 {
+      font-size: 36px; 
+      color: #27ae60;
+      margin-bottom: 10px;
+    }
+    .page-section p {
+      color: #444;
+      font-size: 16px;
+      margin-bottom: 20px;
+    }
+
+    /* Form Styling */
+    .workout-form {
+      max-width: 450px;
+      margin: 0 auto;
+      padding: 22px;
+      background: #fff;
+      border-radius: 14px;
+      box-shadow: 0 8px 22px rgba(0,0,0,0.15);
+      text-align: left;
+      animation: fadeIn 0.6s ease;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .workout-form label {
+      font-weight: 600;
+      color: #333;
+      display: block;
+      margin-bottom: 6px;
+    }
+    .workout-form select,
+    .workout-form input[type="time"] {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 18px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 14px;
+      transition: 0.3s;
+    }
+    .workout-form select:focus,
+    .workout-form input[type="time"]:focus {
+      border-color: #27ae60;
+      outline: none;
+      box-shadow: 0 0 6px rgba(39,174,96,0.4);
+    }
+    .radio-group {
+      margin-bottom: 18px;
+    }
+    .radio-group label {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 8px;
+      cursor: pointer;
+    }
+    .radio-group input[type="radio"] {
+      accent-color: #27ae60;
+    }
+    .workout-form button {
+      width: 100%;
+      padding: 12px;
+      background: linear-gradient(45deg,#27ae60,#1e8449);
+      border: none;
+      border-radius: 8px;
+      color: #fff;
+      font-size: 15px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .workout-form button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(39,174,96,0.35);
+    }
+@media (max-width: 1000px){
+  .sidebar { 
+    position: static; 
+    width:100%; 
+    height:auto; 
+    margin:12px; 
+  }
+  .content-wrap { 
+    margin-left:0; 
+    padding:18px; 
+  }
+  nav { 
+    padding:12px 16px; 
+  }
+}
+
+@media (max-width: 560px){
+  nav ul {  
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+    margin-top: 10px;
+    width: 100%;
+  }
+  .page-section h1{ font-size:28px; }
+}
+
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav>
+    <h2 class="logo">Flowspace</h2>
+    <ul>
+      <li><a href="dashboard.html">Dashboard</a></li>
+      <li><a href="study.html">Study</a></li>
+      <li><a href="skills.html">Skills</a></li>
+      <li><a href="marathon.html">Marathon</a></li>
+      <li><a href="fitness.html" class="active">Fitness</a></li>
+      <li><a href="job.html">Job</a></li>
+      <li><a href="outfit.html">Outfit</a></li>
+      <li><a href="movie.html">Movies</a></li>
+      <li><a href="login.html">Logout</a></li>
+    </ul>
+  </nav>
+
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="brand">
+      <div class="logo-sq">💪</div>
+      <div>
+        <div style="font-weight:700;">Fitness</div>
+        <div style="font-size:12px; opacity:.85;">Overview</div>
+      </div>
+    </div>
+    <h3>Overview</h3>
+    <ul>
+      <li><a href="fitness.html">📊 Dashboard</a></li>
+      <li><a href="fitness-fontarea.html"active">🏋️‍♂️  Font Area</a></li>
+      <li><a href="fitness-backarea.html">🔙 Back Area</a></li>
+      <li><a href="fitness-schedule.html">🗓️ Schedule</a></li>
+      <li><a href="fitness-progress.html">📈 Progress</a></li>
+      <li><a href="fitness-grop.html">👥 Group</a></li>
+      <li><a href="theme.html">📇 Theme</a></li>
+    </ul>
+  </aside>
+
+  <!-- Page Content -->
+  <main class="content-wrap">
+    <section class="page-section">
+      <h1>📝 Font Area</h1>
+      <p>Select your preferred chest workout, set time, and choose intensity.</p>
+
+      <form class="workout-form">
+        <label for="part">Select Font Area Part</label>
+        <select id="part">
+          <option value="">-- Choose Part --</option>
+          <option value="upper">Upper Chest</option>
+          <option value="middle">Middle Chest</option>
+          <option value="lower">Lower Chest</option>
+        </select>
+
+        <!-- Time Selection -->
+        <div class="form-box">
+          <h3>Select Time</h3>
+          <select name="time">
+            <option value="15">15 Minutes</option>
+            <option value="30">30 Minutes</option>
+            <option value="45">45 Minutes</option>
+            <option value="60">1 Hour</option>
+          </select>
+        </div>
+
+        <div class="radio-group">
+          <label><input type="radio" name="intensity" value="light"> Light</label>
+          <label><input type="radio" name="intensity" value="medium"> Medium</label>
+          <label><input type="radio" name="intensity" value="intense"> Intense</label>
+        </div>
+
+        <button type="submit">Save progress</button>
+      </form>
+    </section>
+  </main>
+</body>
+</html>

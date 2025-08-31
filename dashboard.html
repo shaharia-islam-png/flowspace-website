@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard</title>
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { 
+      font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+      background: linear-gradient(135deg,#f5f7fa,#e4ecf7); 
+      color:#333;
+      animation: fadeIn 1s ease-in;
+    }
+
+   
+    nav {
+      background: linear-gradient(90deg,#6a11cb,#2575fc);
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 25px 40px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      animation: slideDown 0.7s ease;
+    }
+    nav .logo { font-size:24px; font-weight:700; letter-spacing:1px; }
+    nav ul { list-style:none; display:flex; }
+    nav ul li { margin-left:22px; }
+    nav ul li a {
+      text-decoration:none; color:white; font-size:15px; font-weight:500;
+      padding:8px 14px; border-radius:8px; 
+      transition:background 0.3s, transform 0.2s;
+    }
+    nav ul li a:hover, nav ul li a.active { 
+      background: rgba(255,255,255,0.2);
+      transform: translateY(-2px);
+    }
+
+    /* Dashboard */
+    .dashboard { 
+      padding:50px 20px; text-align:center; 
+      animation: fadeUp 1s ease;
+    }
+   .dashboard h1 {
+  font-size: 32px;
+  font-weight: 700;
+  background: linear-gradient(90deg,#6a11cb,#2575fc);
+  -webkit-background-clip: text; 
+  background-clip: text;        
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 25px;
+}
+
+
+    /* Cards */
+    .cards {
+      display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+      gap:25px; margin-top:20px; padding:0 20px;
+    }
+    .card {
+      background:white; padding:25px; border-radius:16px;
+      box-shadow:0 6px 15px rgba(0,0,0,0.08);
+      transition: transform 0.3s, box-shadow 0.3s;
+      position:relative; overflow:hidden;
+    }
+    .card::before {
+      content:"";
+      position:absolute; top:-50%; left:-50%;
+      width:200%; height:200%;
+      background: radial-gradient(circle at top left, rgba(106,17,203,0.08), transparent 60%);
+      transform:rotate(25deg);
+      pointer-events:none; 
+    }
+    .card:hover {
+      transform: translateY(-8px) scale(1.02);
+      box-shadow:0 12px 25px rgba(0,0,0,0.15);
+    }
+    .card h3 { 
+      color:#6a11cb; margin-bottom:8px; font-weight:600;
+     }
+    .card p {
+       color:#555; margin-bottom:12px; 
+      }
+
+    .go-btn {
+      display:inline-block; margin-top:8px; padding:8px 14px;
+      background:linear-gradient(90deg,#6a11cb,#2575fc);
+      color:white; border-radius:8px; text-decoration:none;
+      font-size:14px; font-weight:500; position:relative;
+      transition: all 0.3s ease;
+      z-index:2;
+    }
+    .go-btn:hover {
+      background:linear-gradient(90deg,#2575fc,#6a11cb);
+      box-shadow:0 0 12px rgba(106,17,203,0.6);
+      transform: translateY(-2px);
+    }
+    .go-btn::after {
+      content:"→"; margin-left:6px; display:inline-block;
+      transition: transform 0.3s ease;
+    }
+    .go-btn:hover::after {
+      transform: translateX(4px);
+    }
+    @keyframes fadeIn { from{opacity:0;} to{opacity:1;} }
+    @keyframes slideDown { from{transform:translateY(-100%);} to{transform:translateY(0);} }
+    @keyframes fadeUp { from{opacity:0;transform:translateY(20px);} to{opacity:1;transform:translateY(0);} }
+
+    @media (max-width: 1000px){
+      .sidebar { position: static; width:100%; height:auto; margin:12px; }
+      .content-wrap { margin-left:0; padding:18px; }
+      nav { padding:12px 16px; }
+    }
+    @media (max-width: 560px){
+      nav ul {  display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+    margin-top: 10px;
+    width: 100%; }
+      .study h1{ font-size:28px; }
+    }
+
+  </style>
+</head>
+<body>
+  <nav>
+    <h2 class="logo">Flowspace</h2>
+    <ul>
+      <li><a href="dashboard.html" class="active">Dashboard</a></li>
+      <li><a href="study.html">Study</a></li>
+      <li><a href="skills.html">Skills</a></li>
+      <li><a href="marathon.html">Marathon</a></li>
+      <li><a href="fitness.html">Fitness</a></li>
+      <li><a href="job.html">Job</a></li>
+      <li><a href="outfit.html">Outfit</a></li>
+       <li><a href="movie.html">Movies</a></li>
+      <li><a href="login.html">Logout</a></li>
+    </ul>
+  </nav>
+
+  <!-- Dashboard -->
+  <section class="dashboard">
+    <h1>Welcome to Your Dashboard 🎉</h1>
+    <div class="cards">
+      <div class="card">
+        <h3>Study</h3><p>Track your learning</p>
+        <a href="study.html" class="go-btn">Go →</a>
+      </div>
+      <div class="card">
+        <h3>Skills</h3><p>Improve skills</p>
+        <a href="skills.html" class="go-btn">Go →</a>
+      </div>
+      <div class="card">
+        <h3>Marathon</h3><p>Explore trends</p>
+        <a href="marathon.html" class="go-btn">Go →</a>
+      </div>
+      <div class="card">
+        <h3>Fitness</h3><p>Stay healthy</p>
+        <a href="fitness.html" class="go-btn">Go →</a>
+      </div>
+      <div class="card">
+        <h3>Jobs</h3><p>Find jobs</p>
+        <a href="job.html" class="go-btn">Go →</a>
+      </div>
+      <div class="card">
+        <h3>Outfits</h3><p>Choose style</p>
+        <a href="outfit.html" class="go-btn">Go →</a>
+      </div>
+        <div class="card">
+        <h3>Movies</h3><p>Enjoy your day by movie</p>
+        <a href="movie.html" class="go-btn">Go →</a>
+      </div>
+    </div>
+  </section>
+</body>
+</html>
+
+

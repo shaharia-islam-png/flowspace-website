@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Schedule - Fitness</title>
+  <style>
+    body { margin: 0; font-family: Arial, sans-serif; background: #f0fff5; }
+
+    /* Navbar */
+    nav {
+      background: linear-gradient(45deg, #27ae60, #0bca3ebd);
+      color: white;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 12px 40px;
+    }
+    nav .logo { font-size: 22px; font-weight: bold; }
+    nav ul { list-style: none; display: flex; }
+    nav ul li { margin-left: 20px; }
+    nav ul li a {
+      text-decoration: none; color: white; font-size: 15px;
+      padding: 8px 12px; border-radius: 6px; transition: 0.3s;
+    }
+    nav ul li a:hover, nav ul li a.active { background: #1e8449; }
+
+    /* Sidebar */
+    .sidebar {
+      width: 230px;
+      position: fixed;
+      top: 72px;
+      left: 24px;
+      height: calc(80vh - 96px);
+      padding: 20px;
+      border-radius: 14px;
+      background: linear-gradient(180deg,#27ae60, #0bca3e7c);
+      color: #fff;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.25);
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      animation: sidebarIn 0.55s ease forwards;
+    }
+    @keyframes sidebarIn {
+      from { transform: translateX(-30px); opacity:0; }
+      to { transform: translateX(0); opacity:1; }
+    }
+    .sidebar .brand {
+      display:flex; align-items:center; gap:10px;
+    }
+    .sidebar .logo-sq {
+      width:36px; height:36px; border-radius:10px;
+      background: rgba(255,255,255,0.12);
+      display:flex; align-items:center; justify-content:center;
+      font-weight:700; font-size:16px;
+    }
+    .sidebar h3 {
+      font-size:13px; margin:0; text-transform:uppercase; color: rgba(255,255,255,0.9);
+    }
+    .sidebar ul { list-style: none; display:flex; flex-direction:column; gap:8px; margin-top:8px; }
+    .sidebar ul li a {
+      display:flex; align-items:center; gap:10px;
+      padding:8px 10px; border-radius:10px;
+      color: rgba(255,255,255,0.95); text-decoration:none; font-size:14px;
+      transition: all .25s;
+    }
+    .sidebar ul li a:hover { transform: translateX(6px); background: rgba(255,255,255,0.1); }
+    .sidebar ul li a.active {
+      background: #fff;
+      color: #000000;
+      font-weight:600;
+      box-shadow: 0 6px 18px rgba(102, 32, 46, 0.539);
+    }
+
+    .content-wrap {
+      margin-left: 290px;
+      padding: 28px 36px;
+    }
+
+    /* Page Content */
+    .page-section { 
+      padding: 40px; 
+      text-align: center; 
+    }
+    .page-section h1 {
+      font-size: 36px; 
+      color: #27ae60;
+      margin-bottom: 10px;
+    }
+    .page-section p {
+      color: #444;
+      font-size: 16px;
+      margin-bottom: 30px;
+    }
+
+    /* Form */
+    .schedule-form {
+      max-width: 520px;
+      margin: 0 auto;
+      background: #ffffff;
+      padding: 24px;
+      border-radius: 14px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+      animation: fadeIn 0.7s ease;
+      text-align:left;
+    }
+    .schedule-form label {
+      display:block;
+      margin-bottom:8px;
+      font-weight:600;
+      color:#27ae60;
+    }
+    .schedule-form select, 
+    .schedule-form input[type="time"] {
+      width:100%;
+      padding:10px;
+      border-radius:8px;
+      border:1px solid #ccc;
+      margin-bottom:18px;
+      font-size:14px;
+    }
+    .schedule-form input[type="radio"] {
+      margin-right:8px;
+    }
+    .schedule-form .areas {
+      margin-bottom:18px;
+    }
+    .schedule-form button {
+      background:#27ae60;
+      color:white;
+      border:none;
+      padding:12px 20px;
+      border-radius:10px;
+      font-size:15px;
+      cursor:pointer;
+      transition:0.3s;
+    }
+    .schedule-form button:hover {
+      background:#1e8449;
+      transform: translateY(-2px);
+    }
+
+    @keyframes fadeIn {
+      from {opacity:0; transform: translateY(15px);}
+      to {opacity:1; transform: translateY(0);}
+    }
+
+    @media (max-width: 1000px){
+      .sidebar { position: static; width:100%; height:auto; margin:12px; }
+      .content-wrap { margin-left:0; padding:18px; }
+      nav { padding:12px 16px; }
+    }
+    @media (max-width: 560px){
+      nav ul {  display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+    margin-top: 10px;
+    width: 100%; }
+      .fitness h1{ font-size:28px; }
+
+    }
+    
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav>
+    <h2 class="logo">Flowspace</h2>
+    <ul>
+      <li><a href="dashboard.html">Dashboard</a></li>
+      <li><a href="study.html">Study</a></li>
+      <li><a href="skills.html">Skills</a></li>
+      <li><a href="marathon.html">Marathon</a></li>
+      <li><a href="fitness.html" class="active">Fitness</a></li>
+      <li><a href="job.html">Job</a></li>
+      <li><a href="outfit.html">Outfit</a></li>
+      <li><a href="movie.html">Movies</a></li>
+      <li><a href="login.html">Logout</a></li>
+    </ul>
+  </nav>
+
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="brand">
+      <div class="logo-sq">💪</div>
+      <div>
+        <div style="font-weight:700;">Fitness</div>
+        <div style="font-size:12px; opacity:.85;">Overview</div>
+      </div>
+    </div>
+    <h3>Overview</h3>
+    <ul>
+      <li><a href="fitness.html">📊 Dashboard</a></li>
+      <li><a href="fitness-fontarea.html">🏋️‍♂️  Font Area</a></li>
+      <li><a href="fitness-backarea.html">🔙 Back Area</a></li>
+      <li><a href="fitness-schedule.html" class="active">🗓️ Schedule</a></li>
+      <li><a href="fitness-progress.html">📈 Progress</a></li>
+      <li><a href="fitness-grop.html">👥 Group</a></li>
+      <li><a href="theme.html">📇 Theme</a></li>
+    </ul>
+  </aside>
+
+  <!-- Page Content -->
+  <main class="content-wrap">
+    <section class="page-section">
+      <h1>🗓️ Workout Schedule</h1>
+      <p>Create and organize your workout routine with preferred day, time and focus area.</p>
+
+      <form class="schedule-form">
+        <label for="day">Select Day</label>
+        <select id="day" name="day">
+          <option value="monday">Monday</option>
+          <option value="tuesday">Tuesday</option>
+          <option value="wednesday">Wednesday</option>
+          <option value="thursday">Thursday</option>
+          <option value="friday">Friday</option>
+          <option value="saturday">Saturday</option>
+          <option value="sunday">Sunday</option>
+        </select>
+
+        <label for="time">Select Time</label>
+        <input type="time" id="time" name="time">
+
+        <div class="areas">
+          <label>Workout Area</label>
+          <label><input type="radio" name="area" value="font"> Font Area</label><br>
+          <label><input type="radio" name="area" value="back"> Back Area</label><br>
+          <label><input type="radio" name="area" value="legs"> Legs</label>
+        </div>
+
+        <button type="submit">Save Schedule</button>
+      </form>
+    </section>
+  </main>
+</body>
+</html>

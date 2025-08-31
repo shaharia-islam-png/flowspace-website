@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Outfit</title>
+  <style>
+    /* Page Fade In */
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: #f4f6f9;
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      opacity: 0;
+      animation: fadeInPage 1s ease forwards;
+    }
+
+    @keyframes fadeInPage {
+      to { opacity: 1; }
+    }
+
+    /* Navbar */
+    nav {
+      background: linear-gradient(45deg, #7615e6, #5d357d);
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 25px 40px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      animation: slideDown 0.7s ease;
+    }
+    nav .logo { font-size: 22px; font-weight: bold; }
+    nav ul { list-style: none; display: flex; margin: 0; padding: 0; }
+    nav ul li { margin-left: 20px; }
+    nav ul li a {
+      text-decoration: none; color: white; font-size: 15px;
+      padding: 8px 12px; border-radius: 6px; transition: 0.3s;
+    }
+    nav ul li a:hover, nav ul li a.active { background: rgba(255,255,255,0.2); }
+
+    /* Layout */
+    .main {
+      display: flex;
+      flex: 1;
+    }
+
+    /* Filter Sidebar */
+    .filter {
+      width: 260px;
+      background: linear-gradient(180deg, #ffffff, #f3e9ff);
+      border-right: 1px solid #ddd;
+      padding: 25px;
+      height: calc(100vh - 56px);
+      box-shadow: 4px 0 15px rgba(0,0,0,0.1);
+      animation: slideIn 0.8s ease;
+    }
+    @keyframes slideIn {
+      from { transform: translateX(-100%); opacity: 0; }
+      to { transform: translateX(0); opacity: 1; }
+    }
+    .filter h2 {
+      font-size: 20px;
+      color: #8e44ad;
+      margin-bottom: 20px;
+      text-align: center;
+      letter-spacing: 1px;
+    }
+    .filter h3 {
+      margin: 20px 0 10px;
+      font-size: 14px;
+      color: #444;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    /* Skin tone */
+    .skin-tones { display: flex; gap: 15px; margin-top: 10px; }
+    .skin-tone { display: flex; flex-direction: column; align-items: center; cursor: pointer; font-size: 12px; color: #555; transition: transform 0.3s; }
+    .skin-tone:hover { transform: scale(1.1); }
+    .skin-tone input { display: none; }
+    .swatch {
+      width: 36px; height: 36px; border-radius: 50%; border: 2px solid #ddd;
+      margin-bottom: 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); transition: border 0.3s;
+    }
+    .skin-tone input:checked + .swatch { border: 2px solid #293bfc9b; }
+
+    /* Label styles */
+    .filter label { font-size: 14px; margin-bottom: 6px; cursor: pointer; transition: 0.2s; }
+    .filter label:hover { color: #8e44ad; transform: translateX(3px); }
+
+    input[type="radio"] { accent-color: #8e44ad; transform: scale(1.1); margin-right: 6px; transition: 0.2s; }
+    input[type="radio"]:hover { transform: scale(1.2); }
+
+    /* Color palette */
+    .colors {
+      display: grid;
+      grid-template-columns: repeat(6, 30px);
+      gap: 10px;
+      margin-top: 10px;
+    }
+    .color-option {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .color-option input { display: none; }
+    .color-circle {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      border: 2px solid #fff;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      cursor: pointer;
+      transition: transform 0.3s, border 0.3s;
+      display: block;
+    }
+    .color-option input:checked + .color-circle {
+      border: 3px solid #8e44ad;
+      transform: scale(1.2);
+    }
+
+    /* Buttons */
+    .btns {
+     margin-top: 25px;
+     display: flex;
+     justify-content: space-between; }
+    .btns button {
+      padding: 8px 14px; 
+      border: none; 
+      border-radius: 8px; 
+      cursor: pointer;
+      font-size: 14px; 
+      font-weight: bold; 
+      transition: 0.3s;
+    }
+    .apply { background: #8e44ad; color: white; box-shadow: 0 3px 8px rgba(142,68,173,0.4); }
+    .apply:hover { background: #732d91; transform: translateY(-2px); }
+    .reset { background: #eee; color: #333; }
+    .reset:hover { background: #ddd; transform: translateY(-2px); }
+
+    /* Right Content Area */
+    .content {
+      flex: 1;
+      padding: 40px;
+      overflow-y: auto;
+    }
+    .content h1 {
+      color: #ae2eddca;
+      margin-bottom: 15px;
+      text-align: center;
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 1.8rem;
+      
+    }
+    .content h2{
+      padding: 10px;
+      color: #0a1777cc;
+    }
+    .outfit-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(200px,1fr));
+      gap: 20px;
+    }
+    .outfit-card {
+  background: rgb(255, 255, 255);
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column; 
+  align-items: center;    
+  justify-content: center;
+  text-align: center;
+}
+
+/* Hover Animation */
+.outfit-card:hover {
+  transform: translateY(-12px) scale(1.05);
+  box-shadow: 0 12px 24px rgba(0,0,0,0.25);
+}
+
+/* Optional: Smooth “jump” effect with keyframes */
+.outfit-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.outfit-card:hover {
+  animation: jump 0.3s ease forwards;
+}
+
+@keyframes jump {
+  0% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-15px) scale(1.05); }
+  100% { transform: translateY(-12px) scale(1.05); }
+}
+
+    .outfit-card img {
+      width: 30%; border-radius: 10px; margin-bottom: 10px;
+      
+    
+    }
+    .outfit-card h3 { 
+      color: #000000;
+     
+    }
+    .myP{
+      text-align: center;
+    }
+  .outfit-card h3 {
+  transition: color 0.3s ease;
+}
+.outfit-card:hover h3 {
+  color: #0ea28e;
+}
+/* For Tablet (below 1000px) */
+@media (max-width: 1000px) {
+  .main {
+    flex-direction: column;
+  }
+  .filter {
+    width: 100%;
+    height: auto;
+    box-shadow: none;
+    border-right: none;
+    border-bottom: 1px solid #ddd;
+  }
+  .content {
+    padding: 20px;
+  }
+  .outfit-list, .outfit-cards {
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  }
+  .outfit-card img {
+    width: 100%;
+    border-radius: 12px;
+  }
+}
+
+/* For Mobile (below 560px) */
+@media (max-width: 560px) {
+  nav {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  nav ul {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+    margin-top: 10px;
+    width: 100%;
+  }
+  .filter {
+    padding: 15px;
+  }
+  .outfit-list, .outfit-cards {
+    grid-template-columns: 1fr; 
+  }
+  .outfit-card img {
+    width: 100%;
+    border-radius: 10px;
+  }
+}
+
+
+  
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav>
+    <h2 class="logo">Flowspace</h2>
+    <ul>
+      <li><a href="dashboard.html">Dashboard</a></li>
+      <li><a href="study.html">Study</a></li>
+      <li><a href="skills.html">Skills</a></li>
+      <li><a href="marathon.html">Marathon</a></li>
+      <li><a href="fitness.html">Fitness</a></li>
+      <li><a href="job.html">Job</a></li>
+      <li><a href="outfit.html" class="active">Outfit</a></li>
+       <li><a href="movie.html">Movies</a></li>
+      <li><a href="login.html">Logout</a></li>
+    </ul>
+  </nav>
+
+  <div class="main">
+    <!-- Filter Sidebar -->
+    <aside class="filter">
+      <h2>👕 Outfit Filter</h2>
+      <h3>Skin Tone</h3>
+      <div class="skin-tones">
+        <label class="skin-tone">
+          <input type="radio" name="skin">
+          <span class="swatch" style="background:#f8d5b8;"></span>
+          Fair
+        </label>
+        <label class="skin-tone">
+          <input type="radio" name="skin">
+          <span class="swatch" style="background:#d2a679;"></span>
+          Medium
+        </label>
+        <label class="skin-tone">
+          <input type="radio" name="skin">
+          <span class="swatch" style="background:#8d5524;"></span>
+          Dark
+        </label>
+      </div>
+
+      <h3>By Style</h3>
+      <label><input type="radio" name="style"> Casual</label>
+      <label><input type="radio" name="style"> Formal</label>
+      <label><input type="radio" name="style"> Sport</label>
+      <label><input type="radio" name="style"> Trendy</label>
+
+      <h3>Gender</h3>
+      <label><input type="radio" name="gender"> Male</label>
+      <label><input type="radio" name="gender"> Female</label>
+
+      <h3>Color Palette</h3>
+      <div class="colors">
+        <label class="color-option"><input type="radio" name="color"><span class="color-circle" style="background:#db0505;"></span></label>
+        <label class="color-option"><input type="radio" name="color"><span class="color-circle" style="background:#ff69b4;"></span></label>
+        <label class="color-option"><input type="radio" name="color"><span class="color-circle" style="background:#6a5acd;"></span></label>
+        <label class="color-option"><input type="radio" name="color"><span class="color-circle" style="background:#2980b9;"></span></label>
+        <label class="color-option"><input type="radio" name="color"><span class="color-circle" style="background:#2ecc71;"></span></label>
+        <label class="color-option"><input type="radio" name="color"><span class="color-circle" style="background:#ffd013;"></span></label>
+        <label class="color-option"><input type="radio" name="color"><span class="color-circle" style="background:#e67e22;"></span></label>
+        <label class="color-option"><input type="radio" name="color"><span class="color-circle" style="background:#8e44ad;"></span></label>
+        <label class="color-option"><input type="radio" name="color"><span class="color-circle" style="background:#34495e;"></span></label>
+        <label class="color-option"><input type="radio" name="color"><span class="color-circle" style="background:#2c3e50;"></span></label>
+        <label class="color-option"><input type="radio" name="color"><span class="color-circle" style="background:#795548;"></span></label>
+        <label class="color-option"><input type="radio" name="color"><span class="color-circle" style="background:#95a5a6;"></span></label>
+        <label class="color-option"><input type="radio" name="color"><span class="color-circle" style="background:#000000;"></span></label>
+        <label class="color-option"><input type="radio" name="color"><span class="color-circle" style="background:#ffffff;"></span></label>
+        <label class="color-option"><input type="radio" name="color"><span class="color-circle" style="background:#5b8bd7;"></span></label>
+        <label class="color-option"><input type="radio" name="color"><span class="color-circle" style="background:#08aeb9;"></span></label>
+        <label class="color-option"><input type="radio" name="color"><span class="color-circle" style="background:#2f44e5;"></span></label>
+        <label class="color-option"><input type="radio" name="color"><span class="color-circle" style="background:#e13172;"></span></label>
+        <label class="color-option"><input type="radio" name="color"><span class="color-circle" style="background:#1cd43a;"></span></label>
+        <label class="color-option"><input type="radio" name="color"><span class="color-circle" style="background:orange;"></span></label>
+        <label class="color-option"><input type="radio" name="color"><span class="color-circle" style="background:#89cb0d;"></span></label>
+        <label class="color-option"><input type="radio" name="color"><span class="color-circle" style="background:#27e593;"></span></label>
+        <label class="color-option"><input type="radio" name="color"><span class="color-circle" style="background:#088387e7;"></span></label>
+        <label class="color-option"><input type="radio" name="color"><span class="color-circle" style="background:#b4659c;"></span></label>
+      </div>
+
+      <div class="btns">
+        <button class="apply">Apply</button>
+        <button class="reset">Reset</button>
+      </div>
+    </aside>
+
+    <!-- Right Content -->
+    <section class="content">
+      <h1> 👕 OUTFIT</h1>
+      <p class="myP">Find the best Collection for your look.</p>
+      <h2>Outfit Suggestions</h2>
+      <div class="outfit-list">
+        <div class="outfit-card">
+          <img src="https://via.placeholder.com/200x220" alt="Outfit 1">
+          <h3>Casual Outfit</h3>
+          <p>Perfect for everyday wear</p>
+        </div>
+        <div class="outfit-card">
+          <img src="https://via.placeholder.com/200x220" alt="Outfit 2">
+          <h3>Formal Suit</h3>
+          <p>Great for office or events</p>
+        </div>
+        <div class="outfit-card">
+          <img src="https://via.placeholder.com/200x220" alt="Outfit 3">
+          <h3>Sportswear</h3>
+          <p>Stay active and stylish</p>
+        </div>
+      </div>
+        <!-- Outfit Section -->
+    <h1>👕 Outfit Store</h1>
+    <p class="myP">Shop trendy clothes and accessories.</p>
+
+    <div class="outfit-cards">
+      <div class="outfit-card">
+        <img src="image.png" alt="T-shirt">
+        <h3>Casual T-shirt</h3>
+        <p>Price: $15</p>
+        <a href="#">Buy Now →</a>
+      </div>
+
+      <div class="outfit-card">
+        <img src="" alt="Jacket">
+        <h3>Stylish Jacket</h3>
+        <p>Price: $40</p>
+        <a href="#">Buy Now →</a>
+      </div>
+
+      <div class="outfit-card">
+        <img src="" alt="Shoes">
+        <h3>Sport Shoes</h3>
+        <p>Price: $30</p>
+        <a href="#">Buy Now →</a>
+      </div>
+
+      <div class="outfit-card">
+        <img src="" alt="Cap">
+        <h3>Cool Cap</h3>
+        <p>Price: $10</p>
+        <a href="#">Buy Now →</a>
+      </div>
+    </div>
+    </section>
+  </div>
+</body>
+</html>
+
+
+
+
+
+
+
+

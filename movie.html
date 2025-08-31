@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Movies</title>
+  <style>
+    body { margin: 0; font-family: Arial, sans-serif; background: #f0f7ff;
+          animation: fadeIn 0.8s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+        
+    
+
+    nav {
+      background: linear-gradient(45deg, #245fde, #2567b8a0); color: white;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 12px 40px;
+    }
+    nav .logo { font-size: 22px; font-weight: bold; }
+    nav ul { list-style: none; display: flex; }
+    nav ul li { margin-left: 20px; }
+    nav ul li a {
+      text-decoration: none; color: white; font-size: 15px;
+      padding: 8px 12px; border-radius: 6px; transition: 0.3s;
+    }
+    nav ul li a:hover, nav ul li a.active { background: #1f618d; }
+    .content-wrap {
+      margin-left: 290px;
+      padding: 28px 36px;}
+    
+    /*side bar*/
+        .sidebar {
+      width: 230px;
+      position: fixed;
+      top: 72px; 
+      left: 24px;
+      height: calc(100vh - 96px);
+      padding: 20px;
+      border-radius: 14px;
+      background: linear-gradient(180deg, #245fde, #2567b8a0);
+      color: #fff;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.25);
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      animation: sidebarIn 0.55s ease forwards;
+    }
+    @keyframes sidebarIn {
+      from { transform: translateX(-30px); opacity:0; }
+      to { transform: translateX(0); opacity:1; }
+    }
+    .sidebar .brand {
+      display:flex; align-items:center; gap:10px;
+    }
+    .sidebar .logo-sq {
+      width:36px; height:36px; border-radius:10px;
+      background: rgba(255,255,255,0.12);
+      display:flex; align-items:center; justify-content:center;
+      font-weight:700; font-size:16px;
+    }
+    .sidebar h3 {
+      font-size:13px; margin:0; text-transform:uppercase; color: rgba(255,255,255,0.9);
+    }
+    .sidebar ul { list-style: none; display:flex; flex-direction:column; gap:8px; margin-top:8px; }
+    .sidebar ul li a {
+      display:flex; align-items:center; gap:10px;
+      padding:8px 10px; border-radius:10px;
+      color: rgba(255,255,255,0.95); text-decoration:none; font-size:14px;
+      transition: all .25s;
+    }
+    .sidebar ul li a:hover { transform: translateX(6px); background: rgba(255,255,255,0.1); }
+    .sidebar ul li a.active {
+      background: #fff;
+      color: #000000;
+      font-weight:600;
+      box-shadow: 0 6px 18px rgba(102, 32, 46, 0.539);
+    }    
+
+
+    /* Movie Section */
+    .movies { padding: 40px; text-align: center; }
+    .movies h1 { font-size: 32px; color: #2980b9; 
+    font-family: 'Times New Roman', Times, serif;}
+    .movies p { color: #444; margin-bottom: 20px; }
+
+    .movies-cards {
+      display: grid; grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
+      gap: 20px; margin-top: 20px;
+    }
+    .movie-card {
+      background: white; padding: 20px; border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1); transition: 0.2s;
+      position: relative;
+    }
+    .movie-card:hover { transform: translateY(-5px); }
+    .movie-card h3 { color: #2980b9; margin-bottom: 8px; }
+    .movie-card p { color: #555; margin-bottom: 12px; }
+    .movie-card a {
+      display: inline-block; margin-top: 10px; padding: 8px 12px;
+      background: #2980b9; color: white; border-radius: 6px; text-decoration: none;
+      transition: 0.3s;
+    }
+    .movie-card a:hover { background: #1f618d; }
+    
+     @media (max-width: 1000px){
+      .sidebar { position: static; width:100%; height:auto; margin:12px; }
+      .content-wrap { margin-left:0; padding:18px; }
+      nav { padding:12px 16px; }
+    }
+    @media (max-width: 560px){
+      nav ul { display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+    margin-top: 10px;
+    width: 100%; }
+      .movies h1{ font-size:28px; }
+    }
+    .movies h2{
+      text-align: left;
+    }
+
+
+  </style>
+</head>
+<body>
+
+
+  <nav>
+    <h2 class="logo">Flowspace</h2>
+    <ul>
+      <li><a href="dashboard.html">Dashboard</a></li>
+      <li><a href="study.html">Study</a></li>
+      <li><a href="skills.html">Skills</a></li>
+      <li><a href="marathon.html">Marathon</a></li>
+      <li><a href="fitness.html">Fitness</a></li>
+      <li><a href="outfit.html">Outfit</a></li>
+       <li><a href="movie.html" class="active">Movies</a></li>
+      <li><a href="login.html">Logout</a></li>
+    </ul>
+  </nav>
+   
+     <!--Sidebar-->
+
+    <aside class="sidebar">
+    <div class="brand">
+      <div class="logo-sq">🎬</div>
+      <div>
+        <div style="font-weight:700;">Movies</div>
+        <div style="font-size:12px; opacity:.85;">Overview</div>
+      </div>
+    </div>
+    <h3>Overview</h3>
+    <ul>
+       <li><a href="movie.html" class="active">📊 Dashboard</a></li>
+      <li><a href="movie-action.html" >🔥 Action</a></li>
+      <li><a href="movie-comedy.html">😂 Comedy</a></li>
+      <li><a href="movie-horror.html">👻 Horror</a></li>
+      <li><a href="movie-thriller.html">🕵️‍♂️ Thriller</a></li>
+      <li><a href="movie-crime.html">👥 Crime</a></li>
+      <li><a href="movie-adventure.html">🌍 Adventure</a></li>
+      <li><a href="movie-romantic.html">❤️ Romantic</a></li>
+      <li><a href="movie-kdrama,cdrama.html">🎭 K-Drama, C-Drama</a></li>
+      <li><a href="movie-animation.html">🐭 Animation</a></li>
+      <li><a href="#">🎨 Theme</a></li>
+    </ul>
+  </aside>  
+
+  <!-- Movies Section -->
+     <main class="content-wrap">
+  <section class="movies">
+    <h1>🎬 Latest Movies</h1>
+    <p>Check out some popular movies and their highlights.</p>
+    <h2>Suggested Movies</h2>
+    <div class="movies-cards">
+      <div class="movie-card">
+        <h3>Inception</h3>
+        <p>Science-fiction thriller by Christopher Nolan.</p>
+        <a href="#">Go →</a>
+      </div>
+      <div class="movie-card">
+        <h3>Interstellar</h3>
+        <p>A journey through space and time.</p>
+        <a href="#">Go →</a>
+      </div>
+      <div class="movie-card">
+        <h3>The Dark Knight</h3>
+        <p>Batman faces the Joker in Gotham City.</p>
+        <a href="#">Go →</a>
+      </div>
+      <div class="movie-card">
+        <h3>Avengers: Endgame</h3>
+        <p>The epic conclusion to the Avengers saga.</p>
+        <a href="#">Go →</a>
+      </div>
+            <div class="movie-card">
+        <h3>K-Drama: My Demon</h3>
+        <p>Explore a Romantic Korean Drama.</p>
+        <a href="#">Go →</a>
+      </div>
+    </div>
+  </section>
+  </main>
+</body>
+</html>
